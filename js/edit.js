@@ -127,6 +127,8 @@ function loadSource(html, name) {
   previewDirty = false;
   previewStale = true;
 
+  $("btn-publish").hidden = !getToken();
+
   showStep("step-editor");
 
   setCodeContent(rawHtml);
@@ -492,6 +494,60 @@ $("btn-copy").addEventListener("click", async () => {
     }, 1500);
   }
 });
+
+// =============================================================================
+// Publish
+// =============================================================================
+
+function textToBase64(text) {
+  const bytes = new TextEncoder().encode(text);
+  let binary = "";
+  for (let i = 0; i < bytes.byteLength; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
+}
+
+
+$("btn-publish").addEventListener("click", () => {
+  flushPending();
+  if (repoContext) {
+    publishExistingRepo();
+  } else {
+    publishNewFile();
+  }
+});
+
+async function publishExistingRepo() {
+  const btn = $("btn-publish");
+  const original = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = "Publishing...";
+  try {
+    await githubApi(
+      `/repos/${encodeURIComponent(repoContext.username)}/${encodeURIComponent(repoContext.repo)}/contents/${repoContext.path.split("/").map(encodeURIComponent).join("/")}`,
+      {
+        method: "PUT",
+        body: JSON.stringify({
+          message: "Update via weejur editor",
+          content: textToBase64(rawHtml),
+          sha: repoContext.sha,
+        }),
+      }
+    );
+    window.location.href = `/published?repo=${encodeURIComponent(repoContext.repo)}&updated=1`;
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = original;
+    alert("Publish failed: " + (err.message || "Unknown error"));
+  }
+}
+
+async function publishNewFile() {
+  const encoder = new TextEncoder();
+  await savePendingFiles([{ path: filename, content: encoder.encode(rawHtml).buffer }]);
+  window.location.href = "/new";
+}
 
 // =============================================================================
 // Loading from a published repo
