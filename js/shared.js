@@ -114,6 +114,13 @@ function arrayBufferToBase64(buffer) {
   return btoa(binary);
 }
 
+function base64ToText(b64) {
+  const binary = atob(b64.replace(/\s/g, ""));
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
 // =============================================================================
 // Pending files (IndexedDB) — survive OAuth redirects
 // =============================================================================

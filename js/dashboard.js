@@ -50,7 +50,8 @@ async function loadSites() {
           <a class="site-card-repo" target="_blank" rel="noopener">View repo on GitHub</a>
         </div>
         <div class="site-card-actions">
-          <a class="btn btn-secondary btn-small">Update</a>
+          <a class="btn btn-secondary btn-small site-card-edit">Edit text</a>
+          <a class="btn btn-secondary btn-small site-card-update">Update</a>
           <button class="btn btn-danger btn-small">Delete</button>
         </div>
       `;
@@ -60,7 +61,8 @@ async function loadSites() {
       urlLink.href = liveUrl;
       urlLink.textContent = liveUrl;
       card.querySelector(".site-card-repo").href = `https://github.com/${encodeURIComponent(username)}/${encodeURIComponent(repo.name)}`;
-      card.querySelector(".btn-secondary").href = `/new?update=${encodeURIComponent(repo.name)}`;
+      card.querySelector(".site-card-edit").href = `/edit?repo=${encodeURIComponent(repo.name)}`;
+      card.querySelector(".site-card-update").href = `/new?update=${encodeURIComponent(repo.name)}`;
       card.querySelector(".btn-danger").dataset.repo = repo.name;
       list.appendChild(card);
     }
