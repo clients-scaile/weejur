@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://stats.weejur.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https:; font-src 'self' https: data:; connect-src 'self' https://api.github.com https://auth.weejur.com https://stats.weejur.com; img-src 'self' data: https:;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preload" href="/fonts/Roboto-VariableFont.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Roboto-Italic-subset.woff2" as="font" type="font/woff2" crossorigin>
+  <title>weejur — Edit a page</title>
+  <meta property="og:image" content="https://weejur.com/assets/weejur.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://weejur.com/assets/weejur.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="js/vendor/prism.min.css">
+
+  <!-- tracking -->
+  <script defer src="https://stats.weejur.com/script.js" data-website-id="b946017f-b414-4cab-8166-3e4735fc5c7e"></script>
+
+</head>
+<body>
+  <nav class="nav-bar">
+    <a href="/" class="nav-logo">weejur</a>
+    <div class="nav-right"></div>
+  </nav>
+
+  <div class="container container--wide">
+    <!-- Step: Choose source -->
+    <section id="step-source" class="step active">
+      <h2>Edit an HTML page</h2>
+      <p>Paste or upload HTML, then change the text by clicking on it in the preview — or edit the raw code directly. Download or publish when you're done.</p>
+      <div class="tab-bar">
+        <button class="tab active" data-source-tab="paste">Paste HTML</button>
+        <button class="tab" data-source-tab="upload">Upload a file</button>
+      </div>
+      <div id="panel-source-paste" class="tab-panel">
+        <textarea id="source-paste" class="html-paste" placeholder="Paste your HTML here..." spellcheck="false"></textarea>
+        <div style="text-align: right;">
+          <button id="btn-source-paste" class="btn btn-primary">Open in editor &rarr;</button>
+        </div>
+      </div>
+      <div id="panel-source-upload" class="tab-panel" hidden>
+        <div id="upload-drop" class="drop-zone">
+          <div class="drop-zone-content">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <p>Drop a single HTML file here</p>
+            <p class="drop-zone-alt">or</p>
+            <div class="pick-buttons">
+              <button id="btn-upload-pick" class="btn btn-secondary">Choose a file</button>
+            </div>
+            <input type="file" id="upload-input" accept=".html,.htm,text/html" hidden>
+          </div>
+        </div>
+        <div id="upload-error" class="error" hidden></div>
+      </div>
+    </section>
+
+    <!-- Step: Loading from repo -->
+    <section id="step-loading" class="step">
+      <div class="loading-spinner">Loading your site...</div>
+    </section>
+
+    <!-- Step: Pick a file (when repo has multiple HTML files at root) -->
+    <section id="step-pick-file" class="step">
+      <h2>Which file do you want to edit?</h2>
+      <p>This site has more than one HTML page. Pick one to edit.</p>
+      <div id="file-pick-list" class="file-pick-list"></div>
+    </section>
+
+    <!-- Step: Source-load error -->
+    <section id="step-source-error" class="step">
+      <h2>Couldn't open that site</h2>
+      <p id="source-error-message"></p>
+      <div class="done-actions">
+        <a href="/dashboard" class="btn btn-secondary">Back to your sites</a>
+      </div>
+    </section>
+
+    <!-- Step: Editor -->
+    <section id="step-editor" class="step">
+      <div class="editor-toolbar">
+        <div class="editor-meta">
+          <span id="editor-filename" class="editor-filename">index.html</span>
+          <span id="editor-status" class="editor-status" hidden>Modified</span>
+        </div>
+        <div class="editor-actions">
+          <button id="btn-copy" class="btn btn-secondary btn-small">Copy</button>
+          <button id="btn-download" class="btn btn-primary btn-small">Download</button>
+        </div>
+      </div>
+      <div class="tab-bar editor-tabs">
+        <button class="tab active" data-view-tab="preview">Preview</button>
+        <button class="tab" data-view-tab="code">Code</button>
+      </div>
+      <div id="view-preview" class="editor-view">
+        <iframe id="preview-frame" class="preview-frame" sandbox="allow-same-origin" title="Preview"></iframe>
+      </div>
+      <div id="view-code" class="editor-view" hidden>
+        <pre class="code-editor-wrap"><code id="code-editor" class="code-editor language-markup" spellcheck="false"></code></pre>
+      </div>
+    </section>
+  </div>
+
+  <footer class="landing-footer">
+    <div class="footer-inner">
+      <div class="footer-text">
+        <p>Made by <a href="https://npilk.com" target="_blank" rel="noopener">npilk</a></p>
+        <p>GitHub and GitHub Pages &copy; <a href="https://github.com" target="_blank" rel="noopener">GitHub, Inc.</a></p>
+        <p>weejur is not affiliated with GitHub.</p>
+        <p>Need help? <a href="/faq#troubleshooting">Troubleshooting</a></p>
+        <p>Questions? <a href="mailto:contact@weejur.com">Send an email</a></p>
+        <p><a href="/legal">Terms &amp; Privacy</a></p>
+      </div>
+      <div class="footer-image">
+        <img src="assets/cabin-complete.webp" alt="Animal construction workers smiling in front of a finished log cabin">
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/prism.min.js"></script>
+  <script src="js/vendor/codejar.min.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/edit.js"></script>
+</body>
+</html>
