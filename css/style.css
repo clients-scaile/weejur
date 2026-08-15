@@ -43,25 +43,27 @@ p, li {
 }
 
 :root {
-  --primary: #2B563B;
-  --primary-hover: #1F3F2B;
-  --primary-light: #D6E8DC;
-  --red: #DD3C2E;
-  --red-hover: #C4311F;
-  --red-light: #FBEAEC;
+  /* Redesign 2026-08: dark, high-contrast, minimal.
+     Token layer only, so every JS hook and class name is untouched. */
+  --primary: #FFFFFF;
+  --primary-hover: #E4E4E7;
+  --primary-light: #17181C;
+  --red: #F0503C;
+  --red-hover: #D8412E;
+  --red-light: #241417;
 
-  --bg: #F4E4D6;
-  --bg-card: #f8ede3;
-  --text: #2D2A26;
-  --text-muted: #433c34;
-  --text-light: #B0AAA6;
-  --border: #E0D6CC;
-  --border-focus: var(--primary);
-  --shadow-sm: 0 1px 3px rgba(45, 42, 38, 0.06);
-  --shadow-md: 0 4px 16px rgba(45, 42, 38, 0.08);
-  --shadow-lg: 0 8px 30px rgba(45, 42, 38, 0.1);
-  --radius: 12px;
-  --radius-lg: 20px;
+  --bg: #0B0B0D;
+  --bg-card: #131418;
+  --text: #F4F4F6;
+  --text-muted: #A0A0AB;
+  --text-light: #6C6C77;
+  --border: #26272D;
+  --border-focus: #4D4E57;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.55);
+  --radius: 10px;
+  --radius-lg: 14px;
 }
 
 html {
@@ -107,7 +109,7 @@ body {
   left: 12px;
   right: 12px;
   z-index: 50;
-  background: #f8ede3;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border);
@@ -263,7 +265,7 @@ body {
 
 .btn-secondary.btn-muted:hover:not(:disabled) {
   background: var(--bg);
-  border-color: #D8D2CE;
+  border-color: var(--border);
   color: var(--text);
 }
 
@@ -398,7 +400,7 @@ body {
 }
 
 .landing-picker {
-  background: #f8ede3;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: 32px;
   box-shadow: var(--shadow-md);
@@ -449,7 +451,7 @@ body {
 }
 
 .step-card {
-  background: #f8ede3;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: 32px 24px;
   text-align: center;
@@ -583,7 +585,7 @@ body {
    ============================================================================= */
 
 .landing-footer {
-  background: #422a15;
+  background: #0F1013;
   padding: 40px 24px;
   margin-top: auto;
 }
@@ -605,13 +607,13 @@ body {
 
 .footer-text p {
   font-size: 0.85rem;
-  color: #aa9787;
+  color: var(--text-muted);
   line-height: 1.3;
   text-align: left;
 }
 
 .landing-footer a {
-  color: #aa9787;
+  color: var(--text-muted);
   text-decoration: underline;
   font-weight: inherit;
 }
@@ -683,12 +685,12 @@ body {
 
 .login-footer-text {
   font-size: 0.85rem;
-  color: #aa9787;
+  color: var(--text-muted);
   line-height: 1.55;
 }
 
 .login-footer-text a {
-  color: #aa9787;
+  color: var(--text-muted);
   text-decoration: none;
   font-weight: 500;
 }
@@ -870,7 +872,7 @@ body {
 }
 
 .pick-buttons .btn {
-  background: #fff;
+  background: var(--bg-card);
 }
 
 .pick-buttons .btn:hover:not(:disabled) {
@@ -985,13 +987,13 @@ body {
 
 .progress-step.done {
   background: var(--primary-light);
-  color: #1A7A4C;
+  color: #4ADE80;
   border-color: transparent;
 }
 
 .progress-step.error {
   background: var(--red-light);
-  color: #9E2A2A;
+  color: #F0503C;
   border-color: transparent;
 }
 
@@ -1062,7 +1064,7 @@ body {
 
 .site-status-live {
   background: var(--primary-light);
-  border: 1px solid #B5D4BF;
+  border: 1px solid var(--border);
 }
 
 .site-status-live-text {
@@ -1091,7 +1093,7 @@ body {
   flex-wrap: wrap;
   gap: 12px;
   background: var(--primary-light);
-  border: 1px solid #B5D4BF;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 16px 20px;
   margin-bottom: 12px;
@@ -1164,7 +1166,7 @@ body {
 
 .error {
   background: var(--red-light);
-  color: #9E2A2A;
+  color: #F0503C;
   padding: 12px 16px;
   border-radius: var(--radius);
   margin-bottom: 16px;
@@ -1178,12 +1180,12 @@ body {
 footer {
   text-align: center;
   margin-top: 40px;
-  color: #aa9787;
+  color: var(--text-muted);
   font-size: 0.85rem;
 }
 
 footer a {
-  color: #aa9787;
+  color: var(--text-muted);
   text-decoration: none;
 }
 
@@ -1827,7 +1829,7 @@ footer a:hover {
   border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
-  background: #fff;
+  background: var(--bg-card);
   overflow: hidden;
   height: 70vh;
   min-height: 400px;
@@ -1838,7 +1840,7 @@ footer a:hover {
   width: 100%;
   height: 100%;
   border: 0;
-  background: #fff;
+  background: var(--bg-card);
 }
 
 pre.code-editor-wrap {
@@ -1847,7 +1849,7 @@ pre.code-editor-wrap {
   margin: 0;
   padding: 0;
   overflow: auto;
-  background: #fff;
+  background: var(--bg-card);
 }
 
 code.code-editor {
@@ -1895,3 +1897,269 @@ code.code-editor:focus {
   font-size: 0.95rem;
 }
 
+
+/* ============================================================
+   Redesign layer, 2026-08.
+   Design language: dark editorial. Wide whitespace, extreme
+   type-size contrast, restrained ornament, one bright CTA.
+   Appended as overrides so nothing above is deleted and the
+   whole redesign reverts with `git checkout css/style.css`.
+   No selector here is new: every hook the JS uses is preserved.
+   ============================================================ */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.005em;
+}
+
+/* --- navigation: quieter, wider, hairline separation --------- */
+.nav-bar {
+  max-width: 1100px;
+  padding: 14px 28px;
+  background: rgba(11, 11, 13, 0.72);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+/* --- hero: the size contrast is the whole idea --------------- */
+.hero { max-width: 1080px; padding: 148px 28px 40px; }
+.hero-headline {
+  font-size: clamp(2.75rem, 7.2vw, 5.25rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  color: var(--text);
+  max-width: 16ch;
+}
+.hero-sub {
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  color: var(--text-muted);
+  margin-top: 26px;
+  max-width: 52ch;
+  line-height: 1.5;
+}
+.hero-picker { max-width: 920px; margin-top: 64px; }
+
+/* --- surfaces: flat, hairline, no glow ----------------------- */
+.hero-picker, .drop-zone, .file-list, .examples-callout {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+.drop-zone { border-style: dashed; padding: 72px 24px; }
+.drop-zone:hover { border-color: var(--border-focus); background: #16171C; }
+.examples-callout {
+  border-radius: var(--radius);
+  padding: 22px 28px;
+  color: var(--text-muted);
+}
+
+/* --- buttons: one bright action, everything else recedes ----- */
+.btn { border-radius: 8px; font-weight: 500; letter-spacing: -0.01em; }
+.btn-primary {
+  background: var(--primary);
+  color: #0B0B0D;
+  box-shadow: none;
+  border-color: var(--primary);
+}
+.btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border); }
+.btn-secondary:hover { border-color: var(--border-focus); background: var(--bg-card); }
+.btn-cta { border-radius: 8px; font-weight: 500; padding: 17px 40px; }
+
+/* --- sections: left-aligned, generously spaced --------------- */
+.section-heading {
+  font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  color: var(--text);
+  text-align: left;
+  margin-bottom: 48px;
+}
+.how-it-works, .about-section { max-width: 1080px; padding-left: 28px; padding-right: 28px; }
+.how-it-works { padding-top: 112px; padding-bottom: 112px; border-top: 1px solid var(--border); }
+.about-section { padding-top: 96px; padding-bottom: 128px; border-top: 1px solid var(--border); }
+.how-it-works h3, .about-section h3 {
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+.about-section p, .how-it-works p { color: var(--text-muted); }
+
+/* --- tabs: underline only ------------------------------------ */
+.tab { color: var(--text-light); font-weight: 500; }
+.tab:hover { color: var(--text-muted); }
+.tab.active { color: var(--text); border-bottom-color: var(--text); }
+.tab-bar { border-bottom-color: var(--border); }
+
+/* --- footer -------------------------------------------------- */
+.landing-footer {
+  background: transparent;
+  border-top: 1px solid var(--border);
+  padding: 48px 28px;
+}
+
+/* --- form controls ------------------------------------------- */
+textarea, input[type="text"], input[type="url"] {
+  background: #0F1013;
+  color: var(--text);
+  border-color: var(--border);
+}
+textarea::placeholder, input::placeholder { color: var(--text-light); }
+textarea:focus, input:focus { border-color: var(--border-focus); outline: none; }
+
+/* --- modal --------------------------------------------------- */
+.modal-overlay { background: rgba(6, 6, 8, 0.82); }
+
+::selection { background: var(--text); color: var(--bg); }
+
+@media (max-width: 700px) {
+  .hero { padding-top: 116px; }
+  .how-it-works, .about-section { padding-top: 72px; padding-bottom: 72px; }
+}
+
+/* --- specificity fixes: class selectors that outranked the
+       element-level overrides above ---------------------------- */
+.html-paste {
+  background: #0F1013;
+  color: var(--text);
+  border-color: var(--border);
+  border-radius: 8px;
+}
+.html-paste::placeholder { color: var(--text-light); }
+.html-paste:focus { border-color: var(--border-focus); outline: none; }
+
+.example-item {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.example-item:hover { background: rgba(255, 255, 255, 0.06); }
+.example-link { color: var(--text); text-underline-offset: 3px; }
+.examples-header { color: var(--text); text-align: left; }
+.examples-list { gap: 14px; }
+
+/* ============================================================
+   Review fixes.
+   Each block below closes a defect found auditing the redesign
+   above. Still CSS-only: no class, id or data attribute changes.
+   ============================================================ */
+
+/* --- token corrections -------------------------------------- */
+:root {
+  color-scheme: dark;             /* native scrollbars, autofill, form widgets */
+  --text-light: #93939E;          /* was #6C6C77: failed AA at 3.55:1 as text */
+  --border-control: #8E8F9B;      /* controls need a visible edge; --border is a hairline */
+}
+
+/* --- the preview iframe shows the USER's page, not our app ---
+   It must keep a light canvas: user HTML has no background of its
+   own and inherits UA-default black text. Darkening it made every
+   pasted page unreadable. Chrome around it stays dark.           */
+.preview-frame { background: #FFFFFF; color-scheme: light; }
+
+/* --- inputs the token layer could not reach ------------------ */
+#site-name {
+  background: #0F1013;
+  color: var(--text);
+  border-color: var(--border-control);
+}
+#site-name::placeholder { color: var(--text-light); }
+#site-name:focus { border-color: var(--text); box-shadow: none; }
+
+.file-list ul { background: transparent; border-color: var(--border); }
+.file-list li { color: var(--text-muted); border-bottom-color: var(--border); }
+
+textarea, input[type="text"], input[type="url"],
+.html-paste, .modal-input, .drop-zone { border-color: var(--border-control); }
+
+/* --- visible focus (WCAG 1.4.11); the earlier layer killed the
+       outline and replaced it with a 2.3:1 border shift -------- */
+textarea:focus-visible, input:focus-visible, .html-paste:focus-visible,
+#site-name:focus-visible, .modal-input:focus-visible,
+.btn:focus-visible, .tab:focus-visible, a:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* --- code editor: prism.min.css loads after this file and its
+       (0,1,1) selectors tie ours, so source order was winning.
+       Descendant selectors outrank it without renaming anything. */
+#view-code pre.code-editor-wrap, .editor-view pre.code-editor-wrap {
+  background: var(--bg-card);
+  text-shadow: none;
+}
+#view-code code.code-editor, .editor-view code.code-editor {
+  color: var(--text);
+  background: transparent;
+  text-shadow: none;
+}
+.editor-view .token.comment, .editor-view .token.prolog,
+.editor-view .token.doctype, .editor-view .token.cdata { color: #7E8894; }
+.editor-view .token.punctuation { color: #A0A0AB; }
+.editor-view .token.tag, .editor-view .token.keyword,
+.editor-view .token.selector { color: #8AB4F8; }
+.editor-view .token.attr-name, .editor-view .token.property { color: #C6A0F6; }
+.editor-view .token.attr-value, .editor-view .token.string { color: #8FD98F; }
+.editor-view .token.number, .editor-view .token.boolean { color: #F5A97F; }
+
+/* --- destructive action: white on --red was 3.55:1 ----------- */
+.btn-danger { color: #0B0B0D; }
+
+/* --- hover tints stranded from the light theme (black on dark) */
+.nav-dropdown-item:hover { background: rgba(255, 255, 255, 0.06); }
+.btn-ghost:hover:not(:disabled) { background: rgba(255, 255, 255, 0.06); }
+
+/* --- links need a non-colour cue now that --primary is white -- */
+.site-card-url, .learn-section a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.38);
+  text-underline-offset: 3px;
+}
+.site-card-url:hover, .learn-section a:hover { text-decoration-color: var(--text); }
+
+/* --- inline code chips: rgba(0,0,0,.05) is invisible on dark -- */
+.learn-section code {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* --- FAQ sidebar: active item must outrank the group headings - */
+.learn-toc-link.active { background: rgba(255, 255, 255, 0.09); color: var(--text); }
+.learn-toc-link:hover { background: rgba(255, 255, 255, 0.05); color: var(--text); }
+.learn-toc-heading:hover { background: rgba(255, 255, 255, 0.06); }
+.learn-toc-heading { color: var(--text-muted); }
+
+/* --- inactive tabs were using the too-dark token -------------- */
+.tab { color: var(--text-muted); }
+
+/* --- sections were shrink-to-fitting, so #how sat 76px narrower
+       than .about-section and their divider rules stair-stepped - */
+.how-it-works, .about-section { width: 100%; }
+
+/* --- footer art has a baked-in warm background; frame it so it
+       reads as an intentional plate rather than a stray slab.
+       Re-cutting the asset transparent is the real fix.          */
+.landing-footer .footer-image img {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+/* --- expanded mobile nav: the pill radius wrapped a tall panel
+       into an ellipse, and the translucent fill let the page
+       show through the menu labels ---------------------------- */
+@media (max-width: 500px) {
+  .nav-bar.nav-open {
+    border-radius: var(--radius-lg);
+    background: #0B0B0D;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
