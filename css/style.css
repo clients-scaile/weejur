@@ -2144,13 +2144,8 @@ textarea:focus-visible, input:focus-visible, .html-paste:focus-visible,
        than .about-section and their divider rules stair-stepped - */
 .how-it-works, .about-section { width: 100%; }
 
-/* --- footer art has a baked-in warm background; frame it so it
-       reads as an intentional plate rather than a stray slab.
-       Re-cutting the asset transparent is the real fix.          */
-.landing-footer .footer-image img {
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-}
+/* --- footer art: assets/cabin-complete.webp now ships with a real
+       alpha channel, so it needs no frame and no plate. --------- */
 
 /* --- expanded mobile nav: the pill radius wrapped a tall panel
        into an ellipse, and the translucent fill let the page
